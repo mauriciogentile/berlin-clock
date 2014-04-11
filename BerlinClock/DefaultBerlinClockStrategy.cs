@@ -7,8 +7,10 @@ namespace BerlinClock
     {
         #region IBerlinClockStrategy Members
 
-        public string Calculate(DateTime time)
+        public string Calculate(string dateTime)
         {
+            DateTime time = Convert.ToDateTime(dateTime ?? string.Empty);
+
             char firstSeries = BuildFirstSeries(time.Second);
             string secondSeries = BuildSecondSeries(time.Hour);
             string thirdSeries = BuildThirdSeries(time.Hour);
@@ -28,23 +30,24 @@ namespace BerlinClock
 
         static string BuildSecondSeries(int hour)
         {
+            //e.g. 22/5=4; 11/5=2
             return BuildSeriesForHours(hour / 5);
         }
 
         static string BuildThirdSeries(int hour)
         {
+            //e.g 22-(22/5)*5=6; 13-(13/5)*5=3
             return BuildSeriesForHours(hour - (hour / 5) * 5);
         }
 
         static string BuildFourthSeries(int min)
         {
-            int spaces = min / 5;
-
+            int spots = min / 5;
             var builder = new StringBuilder();
 
             for (int i = 0; i < 11; i++)
             {
-                if (i < spaces)
+                if (i < spots)
                 {
                     if (i == 2 || i == 5 || i == 8)
                     {
@@ -66,22 +69,24 @@ namespace BerlinClock
 
         static string BuildFifthSeries(int min)
         {
-            int spaces = min - (min / 5) * 5;
+            int spots = min - (min / 5) * 5;
             var builder = new StringBuilder();
+
             for (int i = 0; i < 4; i++)
             {
-                builder.Append(i < spaces ? 'Y' : 'O');
+                builder.Append(i < spots ? 'Y' : 'O');
             }
+
             return builder.ToString();
         }
 
-        static string BuildSeriesForHours(int spaces)
+        static string BuildSeriesForHours(int spots)
         {
             var builder = new StringBuilder();
 
             for (int i = 0; i < 4; i++)
             {
-                builder.Append(i < spaces ? 'R' : 'O');
+                builder.Append(i < spots ? 'R' : 'O');
             }
 
             return builder.ToString();

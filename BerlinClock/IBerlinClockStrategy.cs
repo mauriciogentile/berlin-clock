@@ -4,6 +4,6 @@ namespace BerlinClock
 {
     public interface IBerlinClockStrategy
     {
-        string Calculate(DateTime time);
+        string Calculate(string time);
     }
 }

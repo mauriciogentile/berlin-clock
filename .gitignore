@@ -1,0 +1,8 @@
+/packages
+/*.ncrunchsolution
+/*.suo
+/BerlinClock/bin
+/BerlinClock/obj
+/BerlinClock/*.ncrunchproject
+/BerlinClock.Test/bin
+/BerlinClock.Test/obj
