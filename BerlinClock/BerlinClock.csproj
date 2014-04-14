@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="BerlinClock.cs" />
     <Compile Include="DefaultBerlinClockStrategy.cs" />
-    <Compile Include="IBerlinClock.cs" />
     <Compile Include="IBerlinClockStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
